@@ -1,5 +1,6 @@
 package christmas.event;
 
+import christmas.domain.Badge;
 import christmas.domain.Order;
 
 import java.time.DayOfWeek;
@@ -30,6 +31,11 @@ public class EventPlanner {
         }
 
         return totalDiscount;
+    }
+
+    public void awardBadge(int totalDiscount) {
+        BadgeManager badgeManager = new BadgeManager();
+        Badge badge = badgeManager.getBadge(totalDiscount);
     }
 
     private int calculateTotalOrderPrice() {

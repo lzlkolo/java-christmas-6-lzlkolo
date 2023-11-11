@@ -37,6 +37,9 @@ public class EventPlanner {
         if (isWeekend(visitDate)) {
             events.add(new WeekendEvent());
         }
+        if (isSpecialDate(visitDate)) {
+            events.add(new SpecialEvent());
+        }
         return events;
     }
 
@@ -48,5 +51,10 @@ public class EventPlanner {
     private boolean isWeekend(LocalDate date) {
         DayOfWeek dayOfWeek = date.getDayOfWeek();
         return dayOfWeek == DayOfWeek.SATURDAY || dayOfWeek == DayOfWeek.SUNDAY;
+    }
+
+    private boolean isSpecialDate(LocalDate date) {
+        List<Integer> specialDates = new ArrayList<>(List.of(3, 10, 17, 24, 25, 31));
+        return specialDates.contains(date.getDayOfMonth());
     }
 }

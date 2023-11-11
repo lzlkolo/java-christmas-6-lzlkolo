@@ -31,14 +31,22 @@ public class EventPlanner {
         List<Event> events = new ArrayList<>();
         events.add(new ChristmasEvent(visitDate));
 
-        if (isWeekDay(visitDate)) {
+        if (isWeekday(visitDate)) {
             events.add(new WeekdayEvent());
+        }
+        if (isWeekend(visitDate)) {
+            events.add(new WeekendEvent());
         }
         return events;
     }
 
-    private boolean isWeekDay(LocalDate date) {
+    private boolean isWeekday(LocalDate date) {
         DayOfWeek dayOfWeek = date.getDayOfWeek();
         return dayOfWeek != DayOfWeek.SATURDAY && dayOfWeek != DayOfWeek.SUNDAY;
+    }
+
+    private boolean isWeekend(LocalDate date) {
+        DayOfWeek dayOfWeek = date.getDayOfWeek();
+        return dayOfWeek == DayOfWeek.SATURDAY || dayOfWeek == DayOfWeek.SUNDAY;
     }
 }

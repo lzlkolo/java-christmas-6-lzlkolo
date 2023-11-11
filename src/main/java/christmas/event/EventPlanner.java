@@ -2,6 +2,7 @@ package christmas.event;
 
 import christmas.domain.Order;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +29,16 @@ public class EventPlanner {
 
     private List<Event> addEventsByCondition() {
         List<Event> events = new ArrayList<>();
+        events.add(new ChristmasEvent(visitDate));
 
+        if (isWeekDay(visitDate)) {
+            events.add(new WeekdayEvent());
+        }
         return events;
+    }
+
+    private boolean isWeekDay(LocalDate date) {
+        DayOfWeek dayOfWeek = date.getDayOfWeek();
+        return dayOfWeek != DayOfWeek.SATURDAY && dayOfWeek != DayOfWeek.SUNDAY;
     }
 }

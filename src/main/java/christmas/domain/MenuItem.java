@@ -28,8 +28,13 @@ public enum MenuItem {
         this.price = price;
     }
 
-    public String getCategory() {
-        return category;
+    public static String getCategoryByName(String menuName) {
+        for (MenuItem menuItem : values()) {
+            if (menuItem.name.equals(menuName)) {
+                return menuItem.category;
+            }
+        }
+        return null;
     }
 
     public String getName() {

@@ -9,4 +9,12 @@ public class Order {
     public Order(Map<String, Integer> orderItems) {
         this.orderItems = new HashMap<>(orderItems);
     }
+
+    public int getCategoryQuantity(String category) {
+        return orderItems.entrySet()
+                .stream()
+                .filter(entry -> MenuItem.getCategoryByName(entry.getKey()).equals(category))
+                .mapToInt(Map.Entry::getValue)
+                .sum();
+    }
 }

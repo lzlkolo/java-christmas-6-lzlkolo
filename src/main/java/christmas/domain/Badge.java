@@ -24,4 +24,8 @@ public enum Badge {
         }
         return NO_BADGE;
     }
+
+    public String getBadge() {
+        return badgeName;
+    }
 }

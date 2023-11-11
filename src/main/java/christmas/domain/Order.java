@@ -17,4 +17,16 @@ public class Order {
                 .mapToInt(Map.Entry::getValue)
                 .sum();
     }
+
+    public int calculateTotalPrice() {
+        return orderItems.entrySet()
+                .stream()
+                .mapToInt(entry -> {
+                    String menuName = entry.getKey();
+                    int quantity = entry.getValue();
+                    int price = MenuItem.getPriceByName(menuName);
+                    return quantity * price;
+                })
+                .sum();
+    }
 }

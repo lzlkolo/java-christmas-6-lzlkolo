@@ -12,11 +12,13 @@ public class EventPlanner {
 
     private final LocalDate visitDate;
     private final Order order;
+    private final int totalOrderPrice;
     private final List<Event> events;
 
     public EventPlanner(LocalDate visitDate, Order order) {
         this.visitDate = visitDate;
         this.order = order;
+        this.totalOrderPrice = calculateTotalOrderPrice();
         this.events = initializeEvents();
     }
 
@@ -31,12 +33,17 @@ public class EventPlanner {
         return totalDiscount;
     }
 
+    private int calculateTotalOrderPrice() {
+        return order.calculateTotalPrice();
+    }
+
     private List<Event> initializeEvents() {
         List<Event> events = new ArrayList<>();
         events.add(new ChristmasEvent(visitDate));
         addWeekdayEvent();
         addWeekendEvent();
         addSpecialEvent();
+        addGiftEvent();
         return events;
     }
 
@@ -58,6 +65,12 @@ public class EventPlanner {
         }
     }
 
+    private void addGiftEvent() {
+        if (isEligibleForGift()) {
+            events.add(new GiftEvent());
+        }
+    }
+
     private boolean isWeekday(LocalDate date) {
         DayOfWeek dayOfWeek = date.getDayOfWeek();
         return dayOfWeek != DayOfWeek.SATURDAY && dayOfWeek != DayOfWeek.SUNDAY;
@@ -70,5 +83,9 @@ public class EventPlanner {
 
     private boolean isSpecialDate(LocalDate date) {
         return SPECIAL_DATES.contains(date.getDayOfMonth());
+    }
+
+    private boolean isEligibleForGift() {
+        return totalOrderPrice >= 120000;
     }
 }

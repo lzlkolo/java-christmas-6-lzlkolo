@@ -9,7 +9,6 @@ import java.util.List;
 
 public class EventPlanner {
     private final static List<Integer> SPECIAL_DATES = List.of(3, 10, 17, 24, 25, 31);
-
     private final LocalDate visitDate;
     private final Order order;
     private final int totalOrderPrice;
@@ -27,7 +26,7 @@ public class EventPlanner {
         List<Event> events = initializeEvents();
 
         for (Event event : events) {
-            totalDiscount += event.calculateDiscount(order);
+            totalDiscount += event.calculateDiscount();
         }
 
         return totalDiscount;
@@ -49,13 +48,13 @@ public class EventPlanner {
 
     private void addWeekdayEvent() {
         if (isWeekday(visitDate)) {
-            events.add(new WeekdayEvent());
+            events.add(new WeekdayEvent(order));
         }
     }
 
     private void addWeekendEvent() {
         if (isWeekend(visitDate)) {
-            events.add(new WeekendEvent());
+            events.add(new WeekendEvent(order));
         }
     }
 

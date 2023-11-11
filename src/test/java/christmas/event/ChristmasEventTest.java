@@ -1,19 +1,14 @@
 package christmas.event;
 
-import christmas.domain.Order;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 import java.time.LocalDate;
-import java.util.HashMap;
-import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ChristmasEventTest {
-    Map<String, Integer> orderItems = new HashMap<>(Map.of("크리스마스파스타", 1));
-
     @DisplayName("크리스마스 할인 이벤트")
     @ParameterizedTest
     @CsvSource({
@@ -25,9 +20,7 @@ class ChristmasEventTest {
         LocalDate visitDate = LocalDate.parse(visitDateStringFormat);
         ChristmasEvent christmasEvent = new ChristmasEvent(visitDate);
 
-        Order order = new Order(orderItems);
-
-        int actualDiscountPrice = christmasEvent.calculateDiscount(order);
+        int actualDiscountPrice = christmasEvent.calculateDiscount();
 
         assertEquals(expectedDiscountPrice, actualDiscountPrice);
     }

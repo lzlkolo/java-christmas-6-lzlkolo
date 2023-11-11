@@ -21,13 +21,14 @@ class ChristmasEventTest {
             "2023-12-10, 1900",
             "2023-12-25, 3400"
     })
-    public void christmasEventTest(String visitDateStringFormat, int expectedDiscountAmount) {
+    public void christmasEventTest(String visitDateStringFormat, int expectedDiscountPrice) {
         LocalDate visitDate = LocalDate.parse(visitDateStringFormat);
         ChristmasEvent christmasEvent = new ChristmasEvent(visitDate);
 
         Order order = new Order(orderItems);
 
-        int discountAmount = christmasEvent.calculateDiscount(order);
-        assertEquals(discountAmount, expectedDiscountAmount);
+        int actualDiscountPrice = christmasEvent.calculateDiscount(order);
+
+        assertEquals(expectedDiscountPrice, actualDiscountPrice);
     }
 }

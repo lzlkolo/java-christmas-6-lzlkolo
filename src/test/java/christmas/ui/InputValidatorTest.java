@@ -46,4 +46,43 @@ public class InputValidatorTest {
         assertThatThrownBy(() -> inputValidator.validateDateInput(visitDateStringFormat))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("주문 정상 입력 테스트")
+    @ParameterizedTest
+    @ValueSource(strings = {"크리스마스파스타-1", "크리스마스파스타-1,제로콜라-1", "크리스마스파스타-1,제로콜라-1,타파스-1,"})
+    public void validOrderInput(String orderStringFormat) {
+        assertDoesNotThrow(() -> inputValidator.validateOrderInput(orderStringFormat));
+    }
+
+    @DisplayName("주문 입력 예외 테스트 - 입력 양식에 맞지 않게 입력된 경우")
+    @ParameterizedTest
+    @ValueSource(strings = {"크리스마스파스타1", "1", "christmas", "christmasPasta-1"})
+    public void orderInputByInvalidFormat(String orderStringFormat) {
+        assertThatThrownBy(() -> inputValidator.validateOrderInput(orderStringFormat))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("주문 입력 예외 테스트 - 개수에 0이 입력된 경우")
+    @ParameterizedTest
+    @ValueSource(strings = {"크리스마스파스타-0"})
+    public void orderInputByQuantityZero(String orderStringFormat) {
+        assertThatThrownBy(() -> inputValidator.validateOrderInput(orderStringFormat))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("주문 입력 예외 테스트 - 빈 문자열이 입력된 경우")
+    @ParameterizedTest
+    @ValueSource(strings = {""})
+    public void orderInputByEmpty(String orderStringFormat) {
+        assertThatThrownBy(() -> inputValidator.validateOrderInput(orderStringFormat))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("주문 입력 예외 테스트 - 중복 메뉴가 입력된 경우")
+    @ParameterizedTest
+    @ValueSource(strings = {"초코케이크-1, 초코케이크-1"})
+    public void orderInputByDuplicate(String orderStringFormat) {
+        assertThatThrownBy(() -> inputValidator.validateOrderInput(orderStringFormat))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

@@ -8,7 +8,7 @@ public class InputValidator {
         try {
             int visitDate = Integer.parseInt(input);
 
-            if (checkRange(visitDate)) {
+            if (!checkRange(visitDate)) {
                 throw new IllegalArgumentException(ErrorMessage.DATE_ERROR.getMessage());
             }
 
@@ -19,6 +19,6 @@ public class InputValidator {
     }
 
     private boolean checkRange(int visitDate) {
-        return visitDate < FIRST_DAY_OF_MONTH || visitDate > LAST_DAY_OF_MONTH;
+        return visitDate >= FIRST_DAY_OF_MONTH && visitDate <= LAST_DAY_OF_MONTH;
     }
 }

@@ -18,32 +18,32 @@ public class InputValidatorTest {
 
     @DisplayName("날짜 정상 입력 테스트")
     @ParameterizedTest
-    @ValueSource(strings = {"1, 31"})
-    public void validDateTest(String visitDateStringFormat) {
-        assertDoesNotThrow(() -> inputValidator.validateDate(visitDateStringFormat));
+    @ValueSource(strings = {"1", "31"})
+    public void validDateInput(String visitDateStringFormat) {
+        assertDoesNotThrow(() -> inputValidator.validateDateInput(visitDateStringFormat));
     }
 
     @DisplayName("날짜 예외 테스트 - 날짜 범위를 벗어난 경우")
     @ParameterizedTest
-    @ValueSource(strings = {"0 , 32"})
-    public void validDateTestByOutOfRange(String visitDateStringFormat) {
-        assertThatThrownBy(() -> inputValidator.validateDate(visitDateStringFormat))
+    @ValueSource(strings = {"0", "32"})
+    public void dateInputByOutOfRange(String visitDateStringFormat) {
+        assertThatThrownBy(() -> inputValidator.validateDateInput(visitDateStringFormat))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("날짜 예외 테스트 - 숫자가 아닌 경우")
     @ParameterizedTest
-    @ValueSource(strings = {"일 , two, ?"})
-    public void validDateTestByInvalidFormat(String visitDateStringFormat) {
-        assertThatThrownBy(() -> inputValidator.validateDate(visitDateStringFormat))
+    @ValueSource(strings = {"일", "two", "?"})
+    public void dateInputByInvalidFormat(String visitDateStringFormat) {
+        assertThatThrownBy(() -> inputValidator.validateDateInput(visitDateStringFormat))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("날짜 예외 테스트 - 빈 문자열인 경우")
     @ParameterizedTest
     @ValueSource(strings = {""})
-    public void validDateTestByEmpty(String visitDateStringFormat) {
-        assertThatThrownBy(() -> inputValidator.validateDate(visitDateStringFormat))
+    public void dateInputByEmpty(String visitDateStringFormat) {
+        assertThatThrownBy(() -> inputValidator.validateDateInput(visitDateStringFormat))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

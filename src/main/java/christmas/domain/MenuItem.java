@@ -37,10 +37,6 @@ public enum MenuItem {
         return null;
     }
 
-    public String getName() {
-        return name;
-    }
-
     public static int getPriceByName(String menuName) {
         for (MenuItem menuItem : values()) {
             if (menuItem.name.equals(menuName)) {

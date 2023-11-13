@@ -33,9 +33,10 @@ public class EventPlanner {
         return totalDiscount;
     }
 
-    public void awardBadge(int totalDiscount) {
+    public String awardBadge(int totalDiscount) {
         BadgeManager badgeManager = new BadgeManager();
         Badge badge = badgeManager.getBadge(totalDiscount);
+        return badge.getBadge();
     }
 
     private int calculateTotalOrderPrice() {

@@ -1,6 +1,6 @@
 package christmas.ui;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class InputValidator {
@@ -31,7 +31,7 @@ public class InputValidator {
     }
 
     private Map<String, Integer> orderParser(String input) throws IllegalArgumentException {
-        Map<String, Integer> orderItems = new HashMap<>();
+        Map<String, Integer> orderItems = new LinkedHashMap<>();
 
         String[] orderItem = input.split(",");
 

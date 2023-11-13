@@ -10,6 +10,7 @@ import java.util.Map;
 public class OrderValidator {
     private final int MIN_QUANTITY = 1;
     private final int MAX_QUANTITY = 20;
+    private final String BEVERAGE_CATEGORY = "음료";
 
     public void validateOrder(Map<String, Integer> orderItems) throws IllegalArgumentException {
         for (String menuName : orderItems.keySet()) {
@@ -34,7 +35,7 @@ public class OrderValidator {
             category.add(MenuItem.getCategoryByName(menuName));
         }
 
-        if (category.size() == 1 && category.contains("음료")) {
+        if (category.size() == 1 && category.contains(BEVERAGE_CATEGORY)) {
             throw new IllegalArgumentException(ErrorMessage.ORDER_ERROR.getMessage());
         }
     }

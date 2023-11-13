@@ -11,11 +11,14 @@ import java.util.List;
 import java.util.Map;
 
 public class EventPlanner {
-    private final static List<Integer> SPECIAL_DATES = List.of(3, 10, 17, 24, 25, 31);
+    private static final int ELIGIBLE_ORDER_AMOUNT = 120000;
+    private static final int GIFT_PRICE = 25000;
+    private static final List<Integer> SPECIAL_DATES = List.of(3, 10, 17, 24, 25, 31);
+
+    private final List<Event> events = new ArrayList<>();
     private final LocalDate visitDate;
     private final Order order;
     private final int totalOrderPrice;
-    private final List<Event> events = new ArrayList<>();
 
     public EventPlanner(LocalDate visitDate, Order order, int totalOrderPrice) {
         this.visitDate = visitDate;
@@ -52,7 +55,7 @@ public class EventPlanner {
         int giftPrice = 0;
 
         if (hasGiftEvent) {
-            giftPrice = 25000;
+            giftPrice = GIFT_PRICE;
         }
 
         return totalOrderPrice - totalDiscount + giftPrice;
@@ -125,6 +128,6 @@ public class EventPlanner {
     }
 
     private boolean isEligibleForGift() {
-        return totalOrderPrice >= 120000;
+        return totalOrderPrice >= ELIGIBLE_ORDER_AMOUNT;
     }
 }

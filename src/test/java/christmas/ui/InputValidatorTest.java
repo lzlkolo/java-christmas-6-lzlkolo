@@ -3,6 +3,7 @@ package christmas.ui;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
@@ -47,6 +48,14 @@ public class InputValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("날짜 입력 예외 테스트 - null이 입력된 경우")
+    @ParameterizedTest
+    @NullSource
+    public void dateInputByNull(String orderStringFormat) {
+        assertThatThrownBy(() -> inputValidator.validateDateInput(orderStringFormat))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
     @DisplayName("주문 정상 입력 테스트")
     @ParameterizedTest
     @ValueSource(strings = {"크리스마스파스타-1", "크리스마스파스타-1,제로콜라-1", "크리스마스파스타-1,제로콜라-1,타파스-1,"})
@@ -82,6 +91,14 @@ public class InputValidatorTest {
     @ParameterizedTest
     @ValueSource(strings = {"초코케이크-1, 초코케이크-1"})
     public void orderInputByDuplicate(String orderStringFormat) {
+        assertThatThrownBy(() -> inputValidator.validateOrderInput(orderStringFormat))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("주문 입력 예외 테스트 - null이 입력된 경우")
+    @ParameterizedTest
+    @NullSource
+    public void orderInputByNull(String orderStringFormat) {
         assertThatThrownBy(() -> inputValidator.validateOrderInput(orderStringFormat))
                 .isInstanceOf(IllegalArgumentException.class);
     }

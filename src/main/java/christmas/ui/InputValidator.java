@@ -9,8 +9,8 @@ public class InputValidator {
 
     public int validateDateInput(String input) throws IllegalArgumentException {
         try {
+            validateNotNullAndEmpty(input);
             int visitDate = Integer.parseInt(input);
-
             if (!checkRange(visitDate)) {
                 throw new IllegalArgumentException(ErrorMessage.DATE_ERROR.getMessage());
             }
@@ -25,7 +25,14 @@ public class InputValidator {
         return visitDate >= FIRST_DAY_OF_MONTH && visitDate <= LAST_DAY_OF_MONTH;
     }
 
+    private void validateNotNullAndEmpty(String input) throws IllegalArgumentException {
+        if (input == null || input.isEmpty()) {
+            throw new IllegalArgumentException(ErrorMessage.ORDER_ERROR.getMessage());
+        }
+    }
+
     public Map<String, Integer> validateOrderInput(String input) throws IllegalArgumentException {
+        validateNotNullAndEmpty(input);
         Map<String, Integer> orderItems = orderParser(input);
         return orderItems;
     }

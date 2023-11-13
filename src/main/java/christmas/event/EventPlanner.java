@@ -6,8 +6,9 @@ import christmas.domain.Order;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public class EventPlanner {
     private final static List<Integer> SPECIAL_DATES = List.of(3, 10, 17, 24, 25, 31);
@@ -21,6 +22,18 @@ public class EventPlanner {
         this.order = order;
         this.totalOrderPrice = totalOrderPrice;
         this.events = initializeEvents();
+    }
+
+    public Map<String, Integer> applyEvents() {
+        Map<String, Integer> appliedEvents = new LinkedHashMap<>();
+
+        for (Event event : events) {
+            String eventName = event.getEventName();
+            int discount = event.calculateDiscount();
+            appliedEvents.put(eventName, discount);
+        }
+
+        return appliedEvents;
     }
 
     public int calculateTotalDiscount() {
@@ -38,10 +51,6 @@ public class EventPlanner {
         BadgeManager badgeManager = new BadgeManager();
         Badge badge = badgeManager.getBadge(totalDiscount);
         return badge.getBadge();
-    }
-
-    public List<Event> getEvents() {
-        return Collections.unmodifiableList(events);
     }
 
     public boolean hasGiftEvent() {

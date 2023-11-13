@@ -1,8 +1,8 @@
 package christmas.event;
 
 public class GiftEvent implements Event {
-    private final static int DISCOUNT_PRICE = 25000;
-    private final static String EVENT_NAME = "증정 이벤트";
+    private static final int DISCOUNT_PRICE = 25000;
+    private static final String EVENT_NAME = "증정 이벤트";
 
     @Override
     public String getEventName() {

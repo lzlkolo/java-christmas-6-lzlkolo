@@ -3,9 +3,9 @@ package christmas.event;
 import christmas.domain.Order;
 
 public class WeekendEvent implements Event{
-    private final static int DISCOUNT_PRICE = 2023;
-    private final static String DISCOUNT_CATEGORY = "메인";
-    private final static String EVENT_NAME = "주말 할인";
+    private static final int DISCOUNT_PRICE = 2023;
+    private static final String DISCOUNT_CATEGORY = "메인";
+    private static final String EVENT_NAME = "주말 할인";
     private final Order order;
 
     public WeekendEvent(Order order) {

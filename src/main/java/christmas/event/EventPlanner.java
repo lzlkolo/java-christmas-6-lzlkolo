@@ -30,7 +30,9 @@ public class EventPlanner {
         for (Event event : events) {
             String eventName = event.getEventName();
             int discount = event.calculateDiscount();
-            appliedEvents.put(eventName, discount);
+            if (discount > 0) {
+                appliedEvents.put(eventName, discount);
+            }
         }
 
         return appliedEvents;

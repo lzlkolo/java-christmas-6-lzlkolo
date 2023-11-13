@@ -16,10 +16,10 @@ public class EventPlanner {
     private final int totalOrderPrice;
     private final List<Event> events;
 
-    public EventPlanner(LocalDate visitDate, Order order) {
+    public EventPlanner(LocalDate visitDate, Order order, int totalOrderPrice) {
         this.visitDate = visitDate;
         this.order = order;
-        this.totalOrderPrice = calculateTotalOrderPrice();
+        this.totalOrderPrice = totalOrderPrice;
         this.events = initializeEvents();
     }
 

@@ -15,13 +15,13 @@ public class EventPlanner {
     private final LocalDate visitDate;
     private final Order order;
     private final int totalOrderPrice;
-    private final List<Event> events;
+    private final List<Event> events = new ArrayList<>();
 
     public EventPlanner(LocalDate visitDate, Order order, int totalOrderPrice) {
         this.visitDate = visitDate;
         this.order = order;
         this.totalOrderPrice = totalOrderPrice;
-        this.events = initializeEvents();
+        initializeEvents();
     }
 
     public Map<String, Integer> applyEvents() {
@@ -72,13 +72,16 @@ public class EventPlanner {
     }
 
     private List<Event> initializeEvents() {
-        List<Event> events = new ArrayList<>();
-        events.add(new ChristmasEvent(visitDate));
+        addChristmasEvent();
         addWeekdayEvent();
         addWeekendEvent();
         addSpecialEvent();
         addGiftEvent();
         return events;
+    }
+
+    private void addChristmasEvent() {
+        events.add(new ChristmasEvent(visitDate));
     }
 
     private void addWeekdayEvent() {

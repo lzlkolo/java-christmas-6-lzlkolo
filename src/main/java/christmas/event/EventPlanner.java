@@ -46,6 +46,16 @@ public class EventPlanner {
         return totalDiscount;
     }
 
+    public int calculatePaymentPrice(int totalOrderPrice, int totalDiscount, boolean hasGiftEvent) {
+        int giftPrice = 0;
+
+        if (hasGiftEvent) {
+            giftPrice = 25000;
+        }
+
+        return totalOrderPrice - totalDiscount + giftPrice;
+    }
+
     public String awardBadge(int totalDiscount) {
         BadgeManager badgeManager = new BadgeManager();
         Badge badge = badgeManager.getBadge(totalDiscount);

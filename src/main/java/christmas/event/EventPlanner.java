@@ -36,12 +36,11 @@ public class EventPlanner {
         return appliedEvents;
     }
 
-    public int calculateTotalDiscount() {
+    public int calculateTotalDiscount(Map<String, Integer> appliedEvents) {
         int totalDiscount = 0;
-        List<Event> events = initializeEvents();
 
-        for (Event event : events) {
-            totalDiscount += event.calculateDiscount();
+        for (Map.Entry<String, Integer> event : appliedEvents.entrySet()) {
+            totalDiscount += event.getValue();
         }
 
         return totalDiscount;

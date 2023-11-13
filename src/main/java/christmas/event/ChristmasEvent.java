@@ -20,6 +20,10 @@ public class ChristmasEvent implements Event {
     public int calculateDiscount() {
         LocalDate eventStartDate = LocalDate.of(2023, 12, 1);
 
+        if (visitDate.isAfter(eventStartDate.plusDays(24))) {
+            return 0;
+        }
+
         int daysDifference = calculateDaysDifference(eventStartDate, visitDate);
         int discount = Math.max(0, 1000 + (daysDifference * 100));
 

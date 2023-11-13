@@ -6,6 +6,7 @@ import christmas.domain.Order;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class EventPlanner {
@@ -39,8 +40,17 @@ public class EventPlanner {
         return badge.getBadge();
     }
 
-    private int calculateTotalOrderPrice() {
-        return order.calculateTotalPrice();
+    public List<Event> getEvents() {
+        return Collections.unmodifiableList(events);
+    }
+
+    public boolean hasGiftEvent() {
+        for (Event event : events) {
+            if (event instanceof GiftEvent) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private List<Event> initializeEvents() {

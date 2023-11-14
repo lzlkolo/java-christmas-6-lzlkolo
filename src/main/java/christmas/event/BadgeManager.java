@@ -4,6 +4,6 @@ import christmas.domain.Badge;
 
 public class BadgeManager {
     public Badge getBadge(int totalDiscount) {
-        return Badge.getBadgeByTotalDiscount(totalDiscount);
+        return Badge.calculateBadgeByTotalDiscount(totalDiscount);
     }
 }

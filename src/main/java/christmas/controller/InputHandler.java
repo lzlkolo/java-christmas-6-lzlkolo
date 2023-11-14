@@ -18,7 +18,7 @@ public class InputHandler {
 
         while (!isValid) {
             try {
-                dayOfMonth = inputView.getVisitDate();
+                dayOfMonth = inputView.readDate();
                 isValid = true;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -33,7 +33,7 @@ public class InputHandler {
 
         while (!isValid) {
             try {
-                orderItems = inputView.getOrder();
+                orderItems = inputView.readOrder();
                 isValid = true;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());

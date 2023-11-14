@@ -16,7 +16,7 @@ public enum Badge {
         this.maxPrice = maxPrice;
     }
 
-    public static Badge getBadgeByTotalDiscount(int totalDiscount) {
+    public static Badge calculateBadgeByTotalDiscount(int totalDiscount) {
         for (Badge badge : values()) {
             if (totalDiscount >= badge.minPrice && totalDiscount <= badge.maxPrice) {
                 return badge;

@@ -26,7 +26,7 @@ public class InputViewTest {
     public void inputViewTestByVisitDate() {
         System.setIn(createUserInput("15"));
 
-        int visitDate = inputView.getVisitDate();
+        int visitDate = inputView.readDate();
 
         assertEquals(15, visitDate);
 
@@ -39,7 +39,7 @@ public class InputViewTest {
         String input = "크리스마스파스타-1,레드와인-1";
         System.setIn(createUserInput(input));
 
-        Map<String, Integer> orderItems = inputView.getOrder();
+        Map<String, Integer> orderItems = inputView.readOrder();
 
         Map<String, Integer> expectedOrderItems = Map.ofEntries(
                 entry("크리스마스파스타", 1),

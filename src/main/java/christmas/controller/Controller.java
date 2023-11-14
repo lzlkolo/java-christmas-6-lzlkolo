@@ -39,8 +39,8 @@ public class Controller {
         int totalDiscount = eventPlanner.calculateTotalDiscount(appliedEvents);
         int paymentPrice = eventPlanner.calculatePaymentPrice(totalOrderPrice, totalDiscount, hasGiftEvent);
 
-        outputHandler.displayPaymentPrice(paymentPrice);
         outputHandler.displayEventDetails(hasGiftEvent, appliedEvents, totalDiscount);
+        outputHandler.displayPaymentPrice(paymentPrice);
         outputHandler.displayBadge(eventPlanner, totalDiscount);
     }
 
